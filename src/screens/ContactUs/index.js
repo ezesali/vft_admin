@@ -34,7 +34,6 @@ export function ContactUs() {
 
   const [loading, setLoading] = useState(false)
 
-  const docRef = query(collection(db, "contact_us_master"), where("delete_flag", "==", 0));
   
   const navigate = useNavigate();
 
@@ -44,6 +43,8 @@ export function ContactUs() {
     async function getContactData() {
 
         setLoading(true)
+
+        const docRef = query(collection(db, "contact_us_master"), where("delete_flag", "==", 0));
 
         const querySnapshot = await getDocs(docRef);
 

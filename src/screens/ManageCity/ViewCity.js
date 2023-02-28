@@ -2,11 +2,9 @@ import React, {useEffect, useState} from "react";
 import Header from "../Header";
 import { Link } from "react-router-dom";
 import '../../App.css'
-import ImageSlider from "../../components/ImageSlider";
-import { collection, doc, getDocs, query, where, getDoc, orderBy } from "firebase/firestore";
+import { collection, doc, getDocs, query, where, getDoc } from "firebase/firestore";
 import { db } from "../../Auth/firebase";
 import { useParams } from 'react-router-dom';
-import moment from "moment";
 import TabPanel from "../../components/TabPanel";
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -27,14 +25,12 @@ export function ViewCity() {
   //const {currentUser, updateUser, logout} = useContext(AuthContext);
 
   const [navisOpen, setNavisOpen] = useState(false)
-  const [tokenBuy, setTokenBuy] = useState([])
   const [city, setCity] = useState({})
   const [tours, setTours] = useState([])
   const [imageSelected, setImageSelected] = useState(null)
   const [open, setOpen] = useState(false)
   const [value, setValue] = useState(0)
   const [loading, setLoading] = useState(false)
-  const [TotalTokenCount, setTotalTokenCount] = useState(null)
 
   const { id } = useParams();
 

@@ -33,8 +33,7 @@ export function DeleteAccount() {
 
   const [loading, setLoading] = useState(false)
   
-  const docRef = query(collection(db, "user_master"), orderBy("user_id","desc"), where("delete_flag", "==", 1), where("user_type", "==", 1), where("profile_complete","==",1));
-
+  
   const handleClose = () => {
     setOpen(false);
   };
@@ -47,6 +46,8 @@ export function DeleteAccount() {
     async function getUsersData() {
 
         setLoading(true)
+
+        const docRef = query(collection(db, "user_master"), orderBy("user_id","desc"), where("delete_flag", "==", 1), where("user_type", "==", 1), where("profile_complete","==",1));
 
         const querySnapshot = await getDocs(docRef);
 

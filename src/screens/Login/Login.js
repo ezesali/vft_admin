@@ -9,7 +9,6 @@ import {FaEnvelope} from 'react-icons/fa';
 import {FaEyeSlash} from 'react-icons/fa';
 import {FaLock} from 'react-icons/fa';
 import {FaEye} from 'react-icons/fa';
-import { getAuth } from "firebase/auth";
 import logo from '../../assets/images/VFTlogo.png'
 
 
@@ -24,8 +23,6 @@ export function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [remember, setRemember] = useState(false)
 
-
-  const currentuserFire = getAuth().currentUser
 
   const navigate = useNavigate();
 

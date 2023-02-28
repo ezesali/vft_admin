@@ -364,7 +364,7 @@ export function EditRestaurant() {
           })
           .catch(error => {
     
-            console.log('error', error); // eslint-disable-line no-console
+            console.log('error', error); 
           });
      };
 
@@ -419,12 +419,12 @@ export function EditRestaurant() {
         }
 
 
-        if(restaurants.restaurantName == '' ||
-           restaurants.description == '' ||
-           restaurants.position == '' ||
-           restaurants.destinationUrl == '' ||
-           restaurants.webSiteUrl == '' ||
-           restaurants.address == '' ) {
+        if(restaurants.restaurantName === '' ||
+           restaurants.description === '' ||
+           restaurants.position === '' ||
+           restaurants.destinationUrl === '' ||
+           restaurants.webSiteUrl === '' ||
+           restaurants.address === '' ) {
 
 
             setLoadingUpdate(false)

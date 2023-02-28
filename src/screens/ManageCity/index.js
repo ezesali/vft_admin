@@ -142,7 +142,7 @@ export function ManageCity() {
             // doc.data() will be undefined in this case
             console.log("No such document!");
         }
-    })
+    },[])
 
     const editCity = (params) =>{
 

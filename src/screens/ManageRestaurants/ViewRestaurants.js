@@ -2,12 +2,10 @@ import React, {useEffect, useState, useCallback} from "react";
 import Header from "../Header";
 import { Link } from "react-router-dom";
 import '../../App.css'
-import ImageSlider from "../../components/ImageSlider";
-import { collection, doc, getDocs, query, where, getDoc, orderBy, updateDoc, } from "firebase/firestore";
+import { collection, doc, getDocs, query, where, getDoc, updateDoc, } from "firebase/firestore";
 import { serverTimestamp } from "firebase/firestore";
 import { db } from "../../Auth/firebase";
 import { useParams } from 'react-router-dom';
-import moment from "moment";
 import TabPanel from "../../components/TabPanel";
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -336,7 +334,7 @@ export function ViewRestaurant() {
                                 <b className="rowDataUV">Next Destination URL</b>
                             </div>
                             <div className="rowDataValue">
-                                <a href={restaurant && restaurant.destinationUrl} target="_blank" style={{textDecoration: 'underline', color: '#555'}}>{'Click Here'}</a>
+                                <a href={restaurant && restaurant.destinationUrl} rel="noreferrer" target="_blank" style={{textDecoration: 'underline', color: '#555'}}>{'Click Here'}</a>
                             </div>
                         </div>
                         <br/>
@@ -345,7 +343,7 @@ export function ViewRestaurant() {
                                 <b className="rowDataUV">Google Map URL</b>
                             </div>
                             <div className="rowDataValue">
-                                <a href={restaurant && restaurant.googleMapUrl} target="_blank" style={{textDecoration: 'underline', color: '#555'}}>{restaurant && restaurant.googleMapUrl}</a>
+                                <a href={restaurant && restaurant.googleMapUrl} rel="noreferrer" target="_blank" style={{textDecoration: 'underline', color: '#555'}}>{restaurant && restaurant.googleMapUrl}</a>
                             </div>
                         </div>
                         <br/>
@@ -354,7 +352,7 @@ export function ViewRestaurant() {
                                 <b className="rowDataUV">Website URL</b>
                             </div>
                             <div className="rowDataValue">
-                                <a href={restaurant && restaurant.webSiteUrl} target="_blank" style={{textDecoration: 'underline', color: '#555'}}>{restaurant && restaurant.webSiteUrl}</a>
+                                <a href={restaurant && restaurant.webSiteUrl} rel="noreferrer" target="_blank" style={{textDecoration: 'underline', color: '#555'}}>{restaurant && restaurant.webSiteUrl}</a>
                             </div>
                         </div>
                         <br/>
@@ -363,7 +361,7 @@ export function ViewRestaurant() {
                                 <b className="rowDataUV">Address</b>
                             </div>
                             <div className="rowDataValue">
-                                <a href={`http://maps.google.com?q=${ restaurant && restaurant.address}`} target="_blank" style={{textDecoration: 'underline', color: '#555'}}>{restaurant && restaurant.address}</a>
+                                <a href={`http://maps.google.com?q=${ restaurant && restaurant.address}`} rel="noreferrer" target="_blank" style={{textDecoration: 'underline', color: '#555'}}>{restaurant && restaurant.address}</a>
                             </div>
                         </div>
                         <br/>

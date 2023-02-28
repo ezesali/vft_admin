@@ -7,7 +7,6 @@ import Table from '../../components/Table';
 import LoadingSpinner from '../../components/Loading'
 import { collection, getDocs, query, where, orderBy } from "firebase/firestore";
 import { db } from "../../Auth/firebase";
-import { useNavigate } from "react-router-dom";
 import '../../App.css'
 import moment from "moment";
 

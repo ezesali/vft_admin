@@ -185,7 +185,7 @@ export function EditTour() {
           })
           .catch(error => {
     
-            console.log('error', error); // eslint-disable-line no-console
+            console.log('error', error);
           });
      };
 

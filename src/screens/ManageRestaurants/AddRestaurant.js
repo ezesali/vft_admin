@@ -2,11 +2,10 @@ import React, {useEffect, useState} from "react";
 import Header from "../Header";
 import { Link } from "react-router-dom";
 import '../../App.css'
-import { collection, getDocs, query, where, orderBy, doc, getDoc, updateDoc, setDoc } from "firebase/firestore";
+import { collection, getDocs, query, where, orderBy, doc, setDoc } from "firebase/firestore";
 import { db } from "../../Auth/firebase";
 import * as GrIcons from 'react-icons/gr';
 import * as GiIcons from 'react-icons/gi';
-import { useLocation, useParams} from "react-router-dom";
 import {
     Modal,
     Backdrop,
@@ -348,6 +347,8 @@ export function AddRestaurant() {
       const handleSelect = selected => {
     
         setAddress(selected)
+
+        console.log(address)
         
         geocodeByAddress(selected)
           .then(res => getLatLng(res[0]))
@@ -411,12 +412,12 @@ export function AddRestaurant() {
 
         }
 
-        if(restaurants.restaurantName == '' ||
-        restaurants.description == '' ||
-        restaurants.position == '' ||
-        restaurants.destinationUrl == '' ||
-        restaurants.webSiteUrl == '' ||
-        restaurants.address == '' ) {
+        if(restaurants.restaurantName === '' ||
+        restaurants.description === '' ||
+        restaurants.position === '' ||
+        restaurants.destinationUrl === '' ||
+        restaurants.webSiteUrl === '' ||
+        restaurants.address === '' ) {
 
 
             setLoadingUpdate(false)

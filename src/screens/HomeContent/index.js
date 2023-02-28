@@ -2,23 +2,15 @@ import React, {useEffect, useState} from "react";
 import Header from "../Header";
 import { Link } from "react-router-dom";
 import '../../App.css'
-import { collection, getDocs, query, where, orderBy, doc, getDoc, updateDoc } from "firebase/firestore";
+import { collection, getDocs, query, doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../Auth/firebase";
 import * as GrIcons from 'react-icons/gr';
-import * as GiIcons from 'react-icons/gi';
-import { useLocation, useParams} from "react-router-dom";
 import {
     Modal,
     Backdrop,
     Fade,
     TextField,
   } from "@material-ui/core";
-
-
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
-import InputLabel from '@mui/material/InputLabel';
-import FormControl from '@mui/material/FormControl';
 
 import { Button } from "@mui/material";
 import NoCity from '../../assets/images/noCity.jpg';
@@ -29,7 +21,6 @@ import Alert from '@mui/material/Alert';
 import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
 
-import PlacesAutocomplete, {getLatLng, geocodeByAddress} from 'react-places-autocomplete';
 
 import { useNavigate } from "react-router-dom";
 
@@ -38,36 +29,48 @@ export function HomeContent() {
   //const {currentUser, updateUser, logout} = useContext(AuthContext);
 
   const [navisOpen, setNavisOpen] = useState(false)
-  const [tour, setTour] = useState({})
   const [openImg, setOpenImg] = useState(false)
-  const [cities, setCities] = useState([])
   const [homeContent, setHomeContent] = useState({})
   const [slogan, setSlogan] = useState('')
   const [imageUpload, setImageUpload] = useState('')
-  const [citySelected, setCitySelected] = useState(null)
   const [loadingUpdate, setLoadingUpdate] = useState(false)
   const [openAlert, setOpenAlert] = useState(false)
   const [messageAlert, setMessageAlert] = useState('')
   const [severityMsg, setSeverityMsg] = useState('')
-
-  const [address, setAddress] = useState([])
-
-  const [latitude, setLatitude] = useState(null)
-
-  const [longitude, setLongitude] = useState(null)
 
   const navigate = useNavigate();
 
 
   const storage = getStorage();
 
-  const docRef = query(collection(db, "home_content_master"));
+  
 
 
 
   const [loading, setLoading] = useState(false)
 
     useEffect(() => {
+
+        async function getHomeContentData() {
+
+            const docRef = query(collection(db, "home_content_master"));
+
+            const querySnapshot = await getDocs(docRef);
+    
+            querySnapshot.forEach((doc) => {
+    
+                const homeContentData = {
+                    id: doc.id,
+                    slogan: doc.data().slogan,
+                    image: doc.data().url,
+                }
+    
+                setHomeContent(homeContentData)
+                // doc.data() is never undefined for query doc snapshots
+                //console.log(doc.id, " => ", doc.data());
+    
+            });
+        };
 
 
         setLoading(true)
@@ -79,24 +82,7 @@ export function HomeContent() {
     }, [])
 
 
-    async function getHomeContentData() {
-
-        const querySnapshot = await getDocs(docRef);
-
-        querySnapshot.forEach((doc) => {
-
-            const homeContentData = {
-                id: doc.id,
-                slogan: doc.data().slogan,
-                image: doc.data().url,
-            }
-
-            setHomeContent(homeContentData)
-            // doc.data() is never undefined for query doc snapshots
-            //console.log(doc.id, " => ", doc.data());
-
-        });
-    };
+    
 
     const handleClose = () => {
         setOpenImg(false)
@@ -154,7 +140,7 @@ export function HomeContent() {
         }
 
 
-        if(slogan == '' && !imageUpload) {
+        if(slogan === '' && !imageUpload) {
 
 
             setLoadingUpdate(false)
